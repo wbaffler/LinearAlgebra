@@ -57,16 +57,16 @@ namespace ChartsVisualisation
             // 
             this.OverviewButton.Location = new System.Drawing.Point(53, 66);
             this.OverviewButton.Name = "OverviewButton";
-            this.OverviewButton.Size = new System.Drawing.Size(150, 46);
+            this.OverviewButton.Size = new System.Drawing.Size(300, 46);
             this.OverviewButton.TabIndex = 0;
-            this.OverviewButton.Text = "Обзор";
+            this.OverviewButton.Text = "Выбрать файл";
             this.OverviewButton.UseVisualStyleBackColor = true;
             this.OverviewButton.Click += new System.EventHandler(this.OverviewButton_Click);
             // 
             // filePath
             // 
             this.filePath.AutoSize = true;
-            this.filePath.Location = new System.Drawing.Point(231, 73);
+            this.filePath.Location = new System.Drawing.Point(360, 73);
             this.filePath.Name = "filePath";
             this.filePath.Size = new System.Drawing.Size(0, 32);
             this.filePath.TabIndex = 1;
@@ -75,7 +75,7 @@ namespace ChartsVisualisation
             // 
             this.LaunchButton.Location = new System.Drawing.Point(53, 138);
             this.LaunchButton.Name = "LaunchButton";
-            this.LaunchButton.Size = new System.Drawing.Size(150, 46);
+            this.LaunchButton.Size = new System.Drawing.Size(300, 46);
             this.LaunchButton.TabIndex = 2;
             this.LaunchButton.Text = "Рассчитать";
             this.LaunchButton.UseVisualStyleBackColor = true;
@@ -150,6 +150,7 @@ namespace ChartsVisualisation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1800, 1200);
             this.Controls.Add(this.LaunchButton);
             this.Controls.Add(this.filePath);
