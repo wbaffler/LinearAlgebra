@@ -4,13 +4,14 @@ using System.IO;
 using System.Text;
 using ChartsVisualisation.View;
 using LinearAlgebra;
+using ChartsVisualisation.Model;
 
 namespace ChartsVisualisation.Presenter
 {
     class ChartsPresenter
     {
         private readonly IView view;
-        private readonly IFileParser parser = new CSVFileParser();
+        private readonly IFileParser parserCSV = new CSVFileParser();
         private readonly MetricsCalculation calculatorMetric = new MetricsCalculation();
         private string filename;
 
@@ -43,16 +44,16 @@ namespace ChartsVisualisation.Presenter
 
         public void ProcessFile()
         {
-            Console.WriteLine(filename);
+            //Console.WriteLine(filename);
 
             try
             {
-                parser.ReadFile(filename);
-                List<MathVector> avgsVectors = calculatorMetric.CalculateAverage(parser.GroupedVectors);
+                parserCSV.ReadFile(filename);
+                List<MathVector> avgsVectors = calculatorMetric.CalculateAverage(parserCSV.GroupedVectors);
                 List<List<double>> avgsDoubles = ConvertAvgData(avgsVectors);
                 List<double> distanceDouble = calculatorMetric.CalculateDistance(avgsVectors);
 
-                view.SetGraphs(avgsDoubles, distanceDouble, parser.IrisSpecies, parser.IrisSpecs);
+                view.SetGraphs(avgsDoubles, distanceDouble, parserCSV.IrisSpecies, parserCSV.IrisSpecs);
           
 
             }
@@ -64,9 +65,9 @@ namespace ChartsVisualisation.Presenter
             {
                 view.DisplayError("Пустой путь к файлу");
             }
-            catch (FileLoadException)
+            catch (FileLoadException ex)
             {
-                view.DisplayError("Превышена допустимая размерность файла");
+                view.DisplayError(ex.Message);
             }
 
         }
