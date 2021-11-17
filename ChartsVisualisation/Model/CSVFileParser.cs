@@ -104,12 +104,16 @@ namespace ChartsVisualisation
         /// <param name="path">Path of file</param>
         public void ReadFile(string path)
         {
+            if (Path.GetExtension(path) != ".csv")
+            {
+                throw new FileLoadException("Неверное расширение файла");
+            }
             if (path == null)
                 throw new FileNotFoundException();
             long size = new FileInfo(path).Length;
             Console.WriteLine("file size " + size);
             if (size > 2 * 1024 * 1024)
-                throw new FileLoadException();
+                throw new FileLoadException("Превышен размер файла");
 
             string[] _stringsArray = File.ReadAllLines(path);
             _dataMatrix = _stringsArray.Select(x => x.Split(',')).ToArray();
